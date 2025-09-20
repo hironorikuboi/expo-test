@@ -57,7 +57,7 @@
 <body>
   <h1>EXPO2025 模擬予約ページ</h1>
 
-  <div class="card" id="italy">
+  <div class="card" id="osakahelthcare">
     <h2>大阪ヘルスケア</h2>
     <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">10:00〜</div>
     <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">10:30〜</div>
@@ -74,7 +74,7 @@
   <script>
     // 60秒後にランダムな1つのボタンを有効化
     setTimeout(() => {
-      const buttons = document.querySelectorAll('#italy .reserve-button');
+      const buttons = document.querySelectorAll('#osakahealthcare .reserve-button');
       const randomIndex = Math.floor(Math.random() * buttons.length);
       const target = buttons[randomIndex];
       target.setAttribute('aria-disabled', 'false');
@@ -84,4 +84,5 @@
   </script>
 </body>
 </html>
+
 
