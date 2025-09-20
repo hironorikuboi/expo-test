@@ -32,7 +32,7 @@
       cursor: not-allowed;
     }
 
-    /* ✅ スマホ対応（縦表示） */
+    /* ✅ スマホ対応（縦表示・はみ出し防止） */
     @media screen and (max-width: 600px) {
       body {
         font-size: 18px;
@@ -41,8 +41,10 @@
       .reserve-button {
         display: block;
         width: 100%;
+        box-sizing: border-box; /* ✅ padding込みで100%に収める */
         font-size: 20px;
         margin: 12px 0;
+        padding: 12px 24px;
       }
       label {
         display: block;
