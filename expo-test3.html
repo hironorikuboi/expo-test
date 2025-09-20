@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>模擬検証サイト | EXPO2025 自動予約テスト</title>
+  <title>模擬検証サイト | いのちの未来シグネチャーパビリオン</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <style>
     body {
@@ -53,7 +53,7 @@
   </style>
 </head>
 <body>
-  <h1>模擬検証サイト</h1>
+  <h1>いのちの未来 シグネチャーパビリオン 模擬検証サイト</h1>
   <p style="text-align:center; margin-bottom:24px;">
     以下の「予約」ボタンは読み込み時にすべて無効化されています。<br>
     ランダムなタイミング（0～60秒）で順次有効化されます。
@@ -65,27 +65,28 @@
       const container = document.getElementById('cards');
 
       for (let i = 1; i <= 10; i++) {
-        // カード要素を作成
+        // カード要素作成
         const card = document.createElement('div');
         card.className = 'card';
-        card.innerHTML = '<h3>パビリオン ' + i + '</h3>'
-                       + '<button class="reserve-button" disabled>予約</button>';
+        card.innerHTML = 
+          '<h3>いのちの未来 セッション ' + i + '</h3>' +
+          '<button class="reserve-button" disabled>予約</button>';
         container.appendChild(card);
 
-        // 予約ボタンをランダムに有効化
         const btn = card.querySelector('.reserve-button');
-        const delay = Math.random() * 60000; // 0～60000ms の間でランダム
+        const delay = Math.random() * 60000; // 0～60000ms のランダム
+
+        // ランダムに有効化
         setTimeout(() => {
           btn.disabled = false;
           btn.classList.add('enabled');
           btn.textContent = '予約可能';
         }, delay);
 
-        // 有効化後のクリック挙動（デモ用アラート）
+        // クリック動作（デモ用アラート）
         btn.addEventListener('click', () => {
           if (!btn.disabled) {
-            alert('パビリオン ' + i + ' の予約を実行しました');
-            // ここでさらに処理を入れてもOK
+            alert('いのちの未来 セッション ' + i + ' を予約しました');
           }
         });
       }
