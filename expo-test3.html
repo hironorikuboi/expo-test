@@ -2,102 +2,94 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <title>いのちの未来シグネチャーパビリオン | EXPO 2025 大阪・関西万博</title>
+  <title>模擬検証サイト | EXPO2025 自動予約テスト</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="stylesheet" href="styles/pavilion.css" />
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 16px;
+      background: #f5f5f5;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .card-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 16px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      width: 160px;
+      padding: 16px;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .card h3 {
+      margin: 0 0 12px;
+      font-size: 18px;
+      color: #333;
+    }
+    .reserve-button {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      border-radius: 4px;
+      background-color: #ccc;
+      color: #666;
+      cursor: not-allowed;
+      transition: background-color 0.3s, color 0.3s;
+    }
+    .reserve-button.enabled {
+      background-color: #0a0;
+      color: #fff;
+      cursor: pointer;
+    }
+  </style>
 </head>
 <body>
-  <header class="pavilion-header">
-    <h1>いのちの未来シグネチャーパビリオン</h1>
-    <nav class="global-nav">
-      <ul>
-        <li><a href="#overview">概要</a></li>
-        <li><a href="#concept">コンセプト</a></li>
-        <li><a href="#experience">体験コンテンツ</a></li>
-        <li><a href="#schedule">要予約時間</a></li>
-        <li><a href="#partners">共創メンバー</a></li>
-      </ul>
-    </nav>
-  </header>
+  <h1>模擬検証サイト</h1>
+  <p style="text-align:center; margin-bottom:24px;">
+    以下の「予約」ボタンは読み込み時にすべて無効化されています。<br>
+    ランダムなタイミング（0～60秒）で順次有効化されます。
+  </p>
+  <div class="card-container" id="cards"></div>
 
-  <main>
-    <section id="overview" class="pavilion-section">
-      <h2>パビリオン概要</h2>
-      <p>
-        ロボット工学第一人者・石黒秀がプロデュースする
-        シグネチャーパビリオン「いのちの未来」は、
-        科学技術の発展によって広がる新たな可能性のもと、
-        50年後の“いのち”の在り方をバーチャル空間で体感する展示施設です。
-      </p>
-    </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const container = document.getElementById('cards');
 
-    <section id="concept" class="pavilion-section">
-      <h2>コンセプト</h2>
-      <p>
-        物理的制約から解放されたバーチャルパビリオンで、
-        流動する“いのち”のつながりや未来都市を、
-        AR/VRを通して五感で感じることを目指します。
-      </p>
-    </section>
+      for (let i = 1; i <= 10; i++) {
+        // カード要素を作成
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = '<h3>パビリオン ' + i + '</h3>'
+                       + '<button class="reserve-button" disabled>予約</button>';
+        container.appendChild(card);
 
-    <section id="experience" class="pavilion-section">
-      <h2>体験コンテンツ</h2>
-      <ul class="experience-list">
-        <li>
-          <strong>ミライシティメーカー</strong>
-          <p>参加者が未来都市の市長となり、バーチャル上で街づくりを体験するプログラム。</p>
-        </li>
-        <li>
-          <strong>ライフフローシアター</strong>
-          <p>生命の循環を映像と音響で表現する没入型シアター体験。</p>
-        </li>
-        <li>
-          <strong>バイオスフィアワークショップ</strong>
-          <p>仮想生態系を操作し、身体拡張テクノロジーを試す協創型ワークショップ。</p>
-        </li>
-        <!-- 他コンテンツをここに追加 -->
-      </ul>
-    </section>
+        // 予約ボタンをランダムに有効化
+        const btn = card.querySelector('.reserve-button');
+        const delay = Math.random() * 60000; // 0～60000ms の間でランダム
+        setTimeout(() => {
+          btn.disabled = false;
+          btn.classList.add('enabled');
+          btn.textContent = '予約可能';
+        }, delay);
 
-    <section id="schedule" class="pavilion-section">
-      <h2>要予約時間</h2>
-      <table class="schedule-table">
-        <thead>
-          <tr>
-            <th>時間帯</th>
-            <th>受付開始</th>
-            <th>定員</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>09:00–10:00</td><td>08:30</td><td>100名</td></tr>
-          <tr><td>10:00–11:00</td><td>09:30</td><td>100名</td></tr>
-          <tr><td>11:00–12:00</td><td>10:30</td><td>100名</td></tr>
-          <tr><td>12:00–13:00</td><td>11:30</td><td>100名</td></tr>
-          <tr><td>13:00–14:00</td><td>12:30</td><td>100名</td></tr>
-          <tr><td>14:00–15:00</td><td>13:30</td><td>100名</td></tr>
-          <tr><td>15:00–16:00</td><td>14:30</td><td>100名</td></tr>
-          <tr><td>16:00–17:00</td><td>15:30</td><td>100名</td></tr>
-          <tr><td>17:00–18:00</td><td>16:30</td><td>100名</td></tr>
-          <tr><td>18:00–19:00</td><td>17:30</td><td>100名</td></tr>
-        </tbody>
-      </table>
-    </section>
-
-    <section id="partners" class="pavilion-section">
-      <h2>共創メンバー</h2>
-      <ul class="partner-list">
-        <li>石黒秀（ロボット工学者・プロデューサー）</li>
-        <li>未来クリエイションズ株式会社</li>
-        <li>サステナブルバイオラボ株式会社</li>
-        <li>メタビジョンXR合同会社</li>
-        <li>…（他 多様な領域のクリエイター・研究者が参画）</li>
-      </ul>
-    </section>
-  </main>
-
-  <footer class="pavilion-footer">
-    <p>&copy; EXPO 2025 OSAKA, KANSAI. All rights reserved.</p>
-  </footer>
+        // 有効化後のクリック挙動（デモ用アラート）
+        btn.addEventListener('click', () => {
+          if (!btn.disabled) {
+            alert('パビリオン ' + i + ' の予約を実行しました');
+            // ここでさらに処理を入れてもOK
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
