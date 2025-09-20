@@ -1,61 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>Expo予約テストページ</title>
+  <title>イタリア館予約</title>
   <style>
     body {
       font-family: sans-serif;
-      padding: 20px;
     }
-    .reserve-button {
-      display: block;
-      width: 300px;         /* 横幅2倍相当 */
-      height: 80px;         /* 高さ2倍相当 */
-      margin: 10px auto;    /* 縦並び＋中央寄せ */
-      font-size: 24px;      /* フォントサイズ2倍相当 */
-      background: #ccc;
-      border: 2px solid #999;
-      cursor: not-allowed;
-      color: #666;
+    .card {
+      margin: 12px;
+      padding: 16px;
+      border: 1px solid #ccc;
       border-radius: 8px;
     }
-    .enabled {
-      background: #4caf50;
-      color: #fff;
+    .reserve-button {
+      display: inline-block;
+      margin: 6px;
+      padding: 12px 24px;
+      background-color: #007bff;
+      color: white;
+      border-radius: 6px;
+      font-size: 18px;
       cursor: pointer;
+      user-select: none;
+    }
+    .reserve-button[aria-disabled="true"] {
+      background-color: #aaa;
+      cursor: not-allowed;
     }
   </style>
 </head>
 <body>
-  <h2>Expo予約テスト（縦並び・サイズ拡大）</h2>
-  <div class="pavilion" id="test-pavilion">
-    <h3>模擬パビリオン</h3>
-    <div id="button-container">
-      <!-- ボタン10個生成 -->
-      <script>
-        for (let i = 1; i <= 10; i++) {
-          document.write(`<button class="reserve-button" id="btn${i}">${9 + i}:00枠</button>`);
-        }
-      </script>
-    </div>
+  <h1>イタリア館 - 予約ページ</h1>
+  <div class="card" id="italy">
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">10:00〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">10:30〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">11:00〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">11:30〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">12:00〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">12:30〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">13:00〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">13:30〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">14:00〜</div>
+    <div class="reserve-button" role="button" aria-disabled="true" data-testid="reserve-button">14:30〜</div>
   </div>
 
   <script>
-    // 初期状態：すべて無効化
-    document.querySelectorAll('.reserve-button').forEach(btn => {
-      btn.disabled = true;
-    });
-
-    // 15秒後にランダムで1つだけ有効化
+    // 60秒後にランダムな1つのボタンを有効化
     setTimeout(() => {
-      const buttons = Array.from(document.querySelectorAll('.reserve-button'));
+      const buttons = document.querySelectorAll('#italy .reserve-button');
       const randomIndex = Math.floor(Math.random() * buttons.length);
-      const selected = buttons[randomIndex];
-      selected.classList.add('enabled');
-      selected.disabled = false;
-      selected.onclick = () => alert(`${selected.textContent} が押されました`);
-    }, 15000);
+      const target = buttons[randomIndex];
+      target.setAttribute('aria-disabled', 'false');
+      target.style.backgroundColor = '#28a745'; // 有効化の視覚的変化
+      console.log(`有効化された時間帯: ${target.textContent}`);
+    }, 60000); // 60秒
   </script>
 </body>
 </html>
